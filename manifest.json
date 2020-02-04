@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name": "HeySpace Chrome Extension",
+  "version": "1.0.2",
+  "description": "Easily create card in any HeySpace board",
+  "icons": { "16": "res/icons/icon16.png",
+    "48": "res/icons/icon48.png",
+    "128": "res/icons/icon128.png" },
+  "permissions": [
+    "tabs",
+    "cookies",
+    "https://app.hey.space/*",
+    "http://fonts.googleapis.com/",
+    "https://fonts.googleapis.com/"
+  ],
+  "background": {
+    "scripts": [
+      "background/background.js",
+      "background/auth/OAuth2Authenticator.js",
+      "background/auth/RedirectUrlHelper.js",
+      "background/auth/AuthHelper.js",
+      "background/api/ApiClient.js",
+      "background/api/ApiResourceConstants.js",
+      "background/api/ApiResourceFetcher.js",
+      "background/api/ApiResourceManager.js",
+      "background/api/DataService.js",
+      "background/api/PopupMessageSender.js",
+      "background/api/CreateCardService.js",
+      "background/storage/DataStorage.js",
+      "background/factory/DataServiceFactory.js",
+      "background/factory/ApiClientFactory.js",
+      "background/constants.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  }
+}
