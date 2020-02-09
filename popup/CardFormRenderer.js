@@ -48,7 +48,6 @@ function CardFormRenderer(BackgroundMessageSender, DataRepository) {
                 let defaultProjectId = Object.keys(targetOrganization.projects)[0];
                 self.renderProjects(targetOrganization.projects, defaultProjectId);
                 self.renderLists(targetOrganization.projects[defaultProjectId].lists);
-                self.DataRepository.updateRecentlySelected('organization', targetOrganizationId);
             } catch (err) {
                 let message = {
                     action: 'fetchResource',
@@ -57,6 +56,8 @@ function CardFormRenderer(BackgroundMessageSender, DataRepository) {
                 };
                 self.projectsSelector.prop('disabled', 'disabled');
                 self.BackgroundMessageSender.sendBackgroundMessageWithCallback(message, self.organizationsSelectMessageCallback);
+            } finally {
+                self.DataRepository.updateRecentlySelected('organization', targetOrganizationId);
             }
         });
     };
@@ -78,7 +79,6 @@ function CardFormRenderer(BackgroundMessageSender, DataRepository) {
             try {
                 let lists = self.DataRepository.getStoredProjectLists(selectedOrganizationId, selectedProjectId);
                 self.renderLists(lists);
-                self.DataRepository.updateRecentlySelected('project', selectedProjectId);
             } catch(err) {
                 let message = {
                     action: 'fetchResource',
@@ -89,6 +89,8 @@ function CardFormRenderer(BackgroundMessageSender, DataRepository) {
 
                 self.listsSelector.prop('disabled', 'disabled');
                 self.BackgroundMessageSender.sendBackgroundMessageWithCallback(message, self.projectsSelectMessageCallback);
+            } finally {
+                self.DataRepository.updateRecentlySelected('project', selectedProjectId);
             }
         });
     };
