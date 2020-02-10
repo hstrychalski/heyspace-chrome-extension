@@ -28,7 +28,7 @@ chrome.runtime.onMessage.addListener( function(request,sender,sendResponse) {
 
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === 'complete') {
+    if (changeInfo.status === 'loading') {
         const authHelper = new AuthHelper(HS_ACCESS_TOKEN_STORAGE_KEY);
         const redirectUrlHelper = new RedirectUrlHelper();
         const authenticator = new OAuth2Authenticator(authHelper);
