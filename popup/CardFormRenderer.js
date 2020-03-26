@@ -135,7 +135,8 @@ function CardFormRenderer(BackgroundMessageSender, DataRepository) {
             });
             let message = {
                 action: 'createCard',
-                card: card
+                card: card,
+                selectedOrganizationId: self.getSelectedOrganizationId()
             };
             self.BackgroundMessageSender.sendBackgroundMessage(message);
         });

@@ -13,6 +13,7 @@ chrome.runtime.onMessage.addListener( function(request,sender,sendResponse) {
 
     if (request.action === 'createCard') {
         createCard(request.card);
+        sendAmplitudeCreateCardEvent(request.selectedOrganizationId);
     }
 
     if (request.action ==='fetchResource') {
@@ -57,3 +58,29 @@ function createCard(card) {
 
     createCardService.createCard(card);
 }
+
+function sendAmplitudeCreateCardEvent(organizationId) {
+    let event = {
+        'user_id': organizationId,
+        'event_type': 'create_card'
+    };
+    let events = [event];
+    let payload = {
+        'api_key': '14da5d294de1cae8dddfddf8ab37821b',
+        'events': events,
+    };
+    let init = {};
+    init.body = JSON.stringify(payload);
+    init.method = 'POST';
+
+    fetch('https://api.amplitude.com/2/httpapi', init)
+        .then(response => {
+            if (response.code !== 200) {
+                console.log(response.json());
+            }
+
+            }).catch(error => {
+                console.log(error);
+    });
+}
+

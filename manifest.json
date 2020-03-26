@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "HeySpace Chrome Extension",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Easily create card in any HeySpace board",
   "icons": { "16": "res/icons/icon16.png",
     "48": "res/icons/icon48.png",
