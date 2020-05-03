@@ -32,7 +32,7 @@ function ApiResourceFetcher(ApiClient) {
 
         return this.ApiClient.request(projectsApiResource.getPath(), 'GET', undefined)
             .then(projectsResponse => {
-                return projectsResponse.response.filter(function (item) {
+                return projectsResponse.response['projects'].filter(function (item) {
                     return !(!item.name || item.name === '');
                 })
             }).then(projects => {
@@ -55,7 +55,7 @@ function ApiResourceFetcher(ApiClient) {
 
         return this.ApiClient.request(listsApiResource.getPath(), 'GET', undefined)
             .then(listsResponse => {
-                return listsResponse.response.lists;
+                return listsResponse.response['lists'];
             }).then(lists => {
                 return lists.map(function(item) {
                     return {
